@@ -1,18 +1,72 @@
+p {
+    font-size: 1rem;
+}
+
+.modal-footer {
+    justify-content: space-between;
+}
+
 .navbar-nav {
     font-size: 1.2rem !important;
 }
+
 
 .logo {
     width: 6em;
     height: 3em;
 }
 
-.end-nav {
-    text-align: end;
-    width: 54%;
-    margin-left: 2%;
-    margin-right: 2%;
+.iniciarsesion {
+    color: pink;
 }
+
+.formulario {
+    margin-top: 3%;
+    text-align: center;
+}
+
+.mediano {
+    width: 20%;
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.mediano-pequeno {
+    width: 15%;
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.mediano-grande {
+    width: 40%;
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: center;
+    text-align: center;
+}
+
+.pequeno {
+    width: 10%;
+    display: inline-block;
+    margin-left: 1em;
+    margin-right: 1em;
+    text-align: center;
+}
+
+.grande {
+    margin-top: 1.5em;
+    margin-left: 1em;
+    margin-right: 1em;
+    width: 63%;
+    display: inline-block;
+}
+
+
 
 @media (min-width: 992px) {
     .dropdown-menu .dropdown-toggle:after {

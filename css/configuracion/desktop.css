@@ -26,6 +26,7 @@ footer>button {
 
 .formulario {
     margin-top: 3%;
+    text-align: center;
 }
 
 .form-registros {
@@ -36,7 +37,7 @@ footer>button {
     border-top: #E0DCDC 4px solid;
     border-bottom: #E0DCDC 4px solid;
     margin-bottom: 1rem;
-    color: #006ECA;
+    color: blue;
 }
 
 .form-control-register {
