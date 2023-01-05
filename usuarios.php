@@ -68,12 +68,11 @@
                                     <div class="form-row formulario">
                                         <div class="form-group mediano-grande">
                                             <label for="usuario">Usuario:</label>
-                                            <input style="text-align:center" class="form-control " id="usuario" name="usuario" type="text">
+                                            <input style="text-align:center" class="form-control " id="usuarion" name="usuarion" type="text">
                                         </div>
                                         <div class="form-group mediano-grande">
                                             <label for="roln">Rol:</label>
                                             <select style="text-align: center;" id="roln" name="roln" class="form-control col-md-8 ">
-                                                <option selected value="0">Seleccionar</option>
                                                 <option value="0">Seleccionar</option>
                                                 <option value="1">Gerente</option>
                                                 <option value="2">Supervisor</option>
@@ -124,7 +123,8 @@
                                 <td> <?php echo $filas['telefono'] ?> </td>
                                 <td> <?php echo $filas['usuario'] ?> </td>
                                 <td>
-                                    <button onclick="datosusuario('<?php echo $filas['cedula'] ?>')" type="button" title="Editar tipo de documento" id="detalles" class="btn btn-primary" data-toggle="modal" data-target="#editar">
+                                    <input disabled style="text-align:center" class=" form-control " id="cedulau" name="cedulau" type="hidden" value="<?php echo $filas['cedula'] ?>">
+                                    <button type="button" title="Editar tipo de documento" id="detallesusuario" class="btn btn-primary" data-toggle="modal" data-target="#editarusuario">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                         </svg>
@@ -136,7 +136,74 @@
                         ?>
                     </tbody>
                 </table>
+                <div class="modal fade" id="editarusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo usuario</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="">
+                                    <div class="form-row formulario">
+                                        <div class="form-group mediano-grande">
+                                            <label for="cedulan">Cedula:</label>
+                                            <input disabled style="text-align:center" class=" form-control " id="cedula" name="cedula" type="text">
+                                        </div>
+                                        <div class="form-group mediano-grande">
+                                            <label for="nombren">Nombre:</label>
+                                            <input style="text-align:center" class=" form-control " id="nombre" name="nombre" type="text">
+                                        </div>
 
+                                    </div>
+                                    <div class="form-row formulario">
+                                        <div class="form-group mediano-grande">
+                                            <label for="correon">Correo:</label>
+                                            <input style="text-align:center" class="form-control " id="correo" name="correo" type="email">
+                                        </div>
+                                        <div class="form-group mediano-grande">
+
+                                            <label for="telefonon">Telefono:</label>
+                                            <input style="text-align:center" class=" form-control " id="telefono" name="telefono" type="text">
+                                        </div>
+
+                                    </div>
+                                    <div class="form-row formulario">
+                                        <div class="form-group mediano-grande">
+                                            <label for="usuario">Usuario:</label>
+                                            <input style="text-align:center" class="form-control " id="usuario" name="usuario" type="text">
+                                        </div>
+                                        <div class="form-group mediano-grande">
+                                            <label for="roln">Rol:</label>
+                                            <select style="text-align: center;" id="rol" name="rol" class="form-control col-md-8 ">
+                                                <option value="0">Seleccionar</option>
+                                                <option value="1">Gerente</option>
+                                                <option value="2">Supervisor</option>
+                                                <option value="3">Comprador</option>
+                                            </select>
+                                        </div>
+                                        <div class="form-row formulario">
+                                            <div class="form-group mediano-grande">
+                                                <label for="claven">Nueva clave:</label>
+                                                <input style="text-align:center" class="form-control " id="clave" name="clave" type="password">
+                                            </div>
+                                            <div class="form-group mediano-grande">
+                                                <label for="confirmarclaven">Confirmar lave:</label>
+                                                <input style="text-align:center" class="form-control " id="confirmarclave" name="confirmarclave" type="password">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="guardarusuario" class="btn btn-primary">Guardar</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </main>
         <footer>
@@ -149,6 +216,74 @@
     <script type="text/javascript" src="./librerias/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
     <script type="text/javascript">
         $(document).ready(function() {
+
+            $('#guardarusuario').click(function() {
+                a = 0;
+                confirmarclave = $('#confirmarclave').val();
+                nombre = $('#nombre').val();
+                correo = $('#correo').val();
+                telefono = $('#telefono').val();
+                rol = $('#rol').val();
+                cedulan = $('#cedula').val();
+                usuario = $('#usuario').val();
+                clave = $('#clave').val();
+                if (clave != confirmarclave) {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'Las claves no coinciden. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (nombre == '') {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'Favor llenar el campo de nombre. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (telefono == '' || telefono < 9999) {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'El campo de telefono es obligatorio y debe tener mas de 5 digitos. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (correo == '') {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'Favor llenar el campo de correo. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (rol == 0) {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'Favor escoger un rol para el nuevo usuario. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (usuario == '') {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'Favor llenar el campo de usuario. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (a == 0) {
+                    cadenau = "nombre=" + nombre + "&correo=" + correo + "&rol=" + rol + "&usuario=" + usuario + "&clave=" + clave + "&telefono=" + telefono + "&cedulan=" + cedulan;
+                    $.ajax({
+                        type: "POST",
+                        url: "usuarios/editarusuario.php",
+                        data: cadenau,
+                        success: function(r) {
+                            if (r == 1) {
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1000);
+                            } else {
+                                // console.log(r);
+                                // debugger;
+                            }
+                        }
+                    });
+
+                }
+
+            });
             $('#registrar').click(function() {
                 a = 0;
                 confirmarclave = $('#confirmarclaven').val();
@@ -214,6 +349,25 @@
                     });
 
                 }
+
+            });
+            $('#detallesusuario').click(function() {
+                cedulau = $('#cedulau').val();
+                $('#cedula').val(cedulau);
+                $.ajax({
+                    type: "POST",
+                    data: "cedula=" + cedulau,
+                    url: "usuarios/obetnerdatosusuario.php",
+                    success: function(r) {
+                        dato = jQuery.parseJSON(r);
+                        $('#nombre').val(dato['nombre']);
+                        $('#correo').val(dato['correo']);
+                        $('#rol').val(dato['rol']);
+                        $('#telefono').val(dato['telefono']);
+                        $('#usuario').val(dato['usuario']);
+                    }
+                });
+
 
             });
         });
