@@ -107,6 +107,7 @@
                             <th> Correo</th>
                             <th> Teléfono</th>
                             <th> Usuario </th>
+                            <th> Rol </th>
                             <th> Acciones </th>
                         </tr>
                     </thead>
@@ -123,10 +124,31 @@
                                 <td> <?php echo $filas['telefono'] ?> </td>
                                 <td> <?php echo $filas['usuario'] ?> </td>
                                 <td>
+                                    <?php
+                                    switch ($filas['rol']) {
+                                        case 1:
+                                            echo 'Gerente';
+                                            break;
+                                        case 2:
+                                            echo 'Supervisor';
+                                            break;
+                                        case 3:
+                                            echo 'Comprador';
+                                            break;
+                                    }
+
+                                    ?>
+                                </td>
+                                <td>
                                     <input disabled style="text-align:center" class=" form-control " id="cedulau" name="cedulau" type="hidden" value="<?php echo $filas['cedula'] ?>">
                                     <button type="button" title="Editar tipo de documento" id="detallesusuario" class="btn btn-primary" data-toggle="modal" data-target="#editarusuario">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                             <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
+                                        </svg>
+                                    </button>
+                                    <button type="button" title="Editar tipo de documento" id="eliminarusuario" class="btn btn-danger">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                            <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                                         </svg>
                                     </button>
                                 </td>
@@ -217,6 +239,51 @@
     <script type="text/javascript">
         $(document).ready(function() {
 
+            $('#eliminarusuario').click(function() {
+                cedula = $('#cedulau').val();
+                $('#cedula').val(cedula);
+                $.ajax({
+                    type: "POST",
+                    data: "cedula=" + cedula,
+                    url: "usuarios/obetnerdatosusuario.php",
+                    success: function(r) {
+                        dato = jQuery.parseJSON(r);
+                        $('#nombre').val(dato['nombre']);
+                        $('#correo').val(dato['correo']);
+                        $('#rol').val(dato['rol']);
+                        $('#telefono').val(dato['telefono']);
+                        $('#usuario').val(dato['usuario']);
+
+                        alertify.confirm('Confirmación', 'Esta seguro que desea eliminar el usuario ' + dato['nombre'] + '?', function() {
+                            cadenau = "cedula=" + cedula;
+                            $.ajax({
+                                type: "POST",
+                                url: "usuarios/eliminarusuario.php",
+                                data: cadenau,
+                                success: function(r) {
+                                    if (r == 1) {
+                                        setTimeout(function() {
+                                            window.location.reload();
+                                        }, 1000);
+                                    } else {
+                                        // console.log(r);
+                                        // debugger;
+                                    }
+                                }
+                            });
+                            alertify.success('Usuario eliminado');
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1000);
+                        }, function() {
+                            alertify.error('Cancelado');
+                        });
+
+
+                    }
+                });
+
+            });
             $('#guardarusuario').click(function() {
                 a = 0;
                 confirmarclave = $('#confirmarclave').val();
