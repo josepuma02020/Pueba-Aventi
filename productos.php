@@ -109,8 +109,8 @@
 
                             </td>
                             <td>
-                                <input disabled style="text-align:center" class=" form-control " id="cedulau" name="cedulau" type="hidden" value="<?php echo $filas['idproducto'] ?>">
-                                <button type="button" title="Editar tipo de documento" id="detallesusuario" class="btn btn-primary" data-toggle="modal" data-target="#editarusuario">
+                                <input disabled style="text-align:center" class=" form-control " id="productou" name="productou" type="hidden" value="<?php echo $filas['idproducto'] ?>">
+                                <button type="button" title="Editar tipo de documento" id="detallesproducto" class="btn btn-primary" data-toggle="modal" data-target="#editarproducto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                     </svg>
@@ -127,11 +127,11 @@
                     ?>
                 </tbody>
             </table>
-            <div class="modal fade" id="editarusuario" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal fade" id="editarproducto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Editar información de usuario</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Registrar producto</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -140,57 +140,41 @@
                             <form action="">
                                 <div class="form-row formulario">
                                     <div class="form-group mediano-grande">
-                                        <label for="cedulan">Cedula:</label>
-                                        <input disabled style="text-align:center" class=" form-control " id="cedula" name="cedula" type="text">
+                                        <label for="producto">producto:</label>
+                                        <input style="text-align:center" class=" form-control " id="idproducto" name="idproducto" type="hidden">
+                                        <input style="text-align:center" class=" form-control " id="producto" name="producto" type="text">
                                     </div>
                                     <div class="form-group mediano-grande">
-                                        <label for="nombren">Nombre:</label>
-                                        <input style="text-align:center" class=" form-control " id="nombre" name="nombre" type="text">
+                                        <label for="precio">precio:</label>
+                                        <input style="text-align:center" class=" form-control " id="precio" name="precio" type="number">
                                     </div>
 
                                 </div>
                                 <div class="form-row formulario">
                                     <div class="form-group mediano-grande">
-                                        <label for="correon">Correo:</label>
-                                        <input style="text-align:center" class="form-control " id="correo" name="correo" type="email">
+                                        <label for="disponibilidad">Disponibilidad:</label>
+                                        <input style="text-align:center" class="form-control " id="disponibilidad" name="disponibilidad" type="number">
                                     </div>
                                     <div class="form-group mediano-grande">
 
-                                        <label for="telefonon">Telefono:</label>
-                                        <input style="text-align:center" class=" form-control " id="telefono" name="telefono" type="text">
+                                        <label for="imagen">Imagen:</label>
+                                        <input accept="image/gif,image/jpg,image/png" style="text-align:center" class=" form-control " id="imagen" name="imagen" type="file">
                                     </div>
 
                                 </div>
                                 <div class="form-row formulario">
-                                    <div class="form-group mediano-grande">
-                                        <label for="usuario">Usuario:</label>
-                                        <input style="text-align:center" class="form-control " id="usuario" name="usuario" type="text">
-                                    </div>
-                                    <div class="form-group mediano-grande">
-                                        <label for="roln">Rol:</label>
-                                        <select style="text-align: center;" id="rol" name="rol" class="form-control col-md-8 ">
-                                            <option value="0">Seleccionar</option>
-                                            <option value="1">Gerente</option>
-                                            <option value="2">Supervisor</option>
-                                            <option value="3">Comprador</option>
-                                        </select>
-                                    </div>
-                                    <div class="form-row formulario">
-                                        <div class="form-group mediano-grande">
-                                            <label for="claven">Nueva clave:</label>
-                                            <input style="text-align:center" class="form-control " id="clave" name="clave" type="password">
-                                        </div>
-                                        <div class="form-group mediano-grande">
-                                            <label for="confirmarclaven">Confirmar lave:</label>
-                                            <input style="text-align:center" class="form-control " id="confirmarclave" name="confirmarclave" type="password">
-                                        </div>
-                                    </div>
+                                    <img src="./productos/imagenproductos/<?php echo $filas['nombrearchivo']; ?>" id="fotoproducto" name="fotoproducto" class="img-fluid" alt="Foto de producto" style="width: 200x ;height:200px">
+
                                 </div>
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                            <button type="button" id="guardarusuario" class="btn btn-primary">Guardar</button>
+
+                            <div> <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+                                <button type="button" id="guardarproducto" class="btn btn-primary">Registrar</button>
+                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -253,63 +237,80 @@
             });
 
         });
-        $('#guardarusuario').click(function() {
+        $('#guardarproducto').click(function() {
             a = 0;
-            confirmarclave = $('#confirmarclave').val();
-            nombre = $('#nombre').val();
-            correo = $('#correo').val();
-            telefono = $('#telefono').val();
-            rol = $('#rol').val();
-            cedulan = $('#cedula').val();
-            usuario = $('#usuario').val();
-            clave = $('#clave').val();
-            if (clave != confirmarclave) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Las claves no coinciden. ', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (nombre == '') {
+            imagen = $('#imagen').val();
+            disponibilidad = $('#disponibilidad').val();
+            producto = $('#producto').val();
+            idproducto = $('#idproducto').val();
+            precio = $('#precio').val();
+            if (producto == '') {
                 a = 1;
                 alertify.alert('ATENCION!!', 'Favor llenar el campo de nombre. ', function() {
                     alertify.success('Ok');
                 });
             }
-            if (telefono == '' || telefono < 9999) {
+            if (precio < 1000) {
                 a = 1;
-                alertify.alert('ATENCION!!', 'El campo de telefono es obligatorio y debe tener mas de 5 digitos. ', function() {
+                alertify.alert('ATENCION!!', 'El precio del producto debe ser mayo a $1.000.', function() {
                     alertify.success('Ok');
                 });
             }
-            if (correo == '') {
+            if (disponibilidad < 1) {
                 a = 1;
-                alertify.alert('ATENCION!!', 'Favor llenar el campo de correo. ', function() {
+                alertify.alert('ATENCION!!', 'Debe de haber minimo un producto disponible.', function() {
                     alertify.success('Ok');
                 });
             }
-            if (rol == 0) {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor escoger un rol para el nuevo usuario. ', function() {
-                    alertify.success('Ok');
-                });
-            }
-            if (usuario == '') {
-                a = 1;
-                alertify.alert('ATENCION!!', 'Favor llenar el campo de usuario. ', function() {
-                    alertify.success('Ok');
-                });
+            if (imagen != "") {
+                fotoproducto = $('#imagen').val();
+                filesize = $('#imagen')[0].files[0].size;
+                if (filesize > 55000000000000) {
+                    a = 1;
+                    alertify.alert('ATENCION!!', 'La imagen del producto es demasiado pesada. ', function() {
+                        alertify.success('Ok');
+                    });
+                }
+                if (a == 0) {
+                    soporte = $('#imagen').prop('files')[0];
+                    datosForm = new FormData;
+                    datosForm.append("soporte", soporte);
+                    ruta = 'productos/subirimagendeproducto.php';
+                    $.ajax({
+                        type: "POST",
+                        url: ruta,
+                        cache: false,
+                        contentType: false,
+                        processData: false,
+                        data: datosForm,
+                        success: function(r) {
+                            if (r == 1) {
+                                // console.log(r);
+                                // debugger;
+                                setTimeout(function() {
+                                    window.location.reload();
+                                }, 1500);
+                                alertify.success('Operación exitosa. ');
+                            } else {
+                                // console.log(r);
+                                // debugger;
+                            }
+                        }
+                    });
+
+                };
             }
             if (a == 0) {
-                cadenau = "nombre=" + nombre + "&correo=" + correo + "&rol=" + rol + "&usuario=" + usuario + "&clave=" + clave + "&telefono=" + telefono + "&cedulan=" + cedulan;
+                cadenau = "precio=" + precio + "&idproducto=" + idproducto + "&producto=" + producto + "&precio=" + precio + "&imagen=" + imagen + "&disponibilidad=" + disponibilidad;
                 $.ajax({
                     type: "POST",
-                    url: "usuarios/editarusuario.php",
+                    url: "productos/editarproducto.php",
                     data: cadenau,
                     success: function(r) {
                         if (r == 1) {
                             setTimeout(function() {
                                 window.location.reload();
-                            }, 1000);
+                            }, 1500);
                         } else {
                             // console.log(r);
                             // debugger;
@@ -384,7 +385,7 @@
                                 console.log(r);
                                 debugger;
                                 setTimeout(function() {
-                                    //window.location.reload();
+                                    window.location.reload();
                                 }, 1500);
                                 alertify.success('Operación exitosa. ');
                             } else {
@@ -398,20 +399,19 @@
             }
 
         });
-        $('#detallesusuario').click(function() {
-            cedulau = $('#cedulau').val();
-            $('#cedula').val(cedulau);
+        $('#detallesproducto').click(function() {
+            productou = $('#productou').val();
+            $('#idproducto').val(productou);
             $.ajax({
                 type: "POST",
-                data: "cedula=" + cedulau,
-                url: "usuarios/obetnerdatosusuario.php",
+                data: "id=" + productou,
+                url: "productos/obtenerdatosproducto.php",
                 success: function(r) {
                     dato = jQuery.parseJSON(r);
-                    $('#nombre').val(dato['nombre']);
-                    $('#correo').val(dato['correo']);
-                    $('#rol').val(dato['rol']);
-                    $('#telefono').val(dato['telefono']);
-                    $('#usuario').val(dato['usuario']);
+                    $('#producto').val(dato['producto']);
+                    $('#precio').val(dato['precio']);
+                    $('#disponibilidad').val(dato['disponibilidad']);
+                    document.getElementById("fotoproducto").src = "./productos/imagenproductos/" + dato['nombrearchivo'];
                 }
             });
 
