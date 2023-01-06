@@ -1,5 +1,5 @@
 <?php
 include('../conexion.php');
-$cedula = $_POST['cedula'];
-$consulta = "DELETE FROM `usuarios` WHERE cedula = '$cedula' ";
+$id = $_POST['id'];
+$consulta = "DELETE FROM `productos` WHERE idproducto = '$id' ";
 echo $query = mysqli_query($link, $consulta) or die($consulta);

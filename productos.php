@@ -193,41 +193,36 @@
     $(document).ready(function() {
 
         $('#eliminarusuario').click(function() {
-            cedula = $('#cedulau').val();
-            $('#cedula').val(cedula);
+            productou = $('#productou').val();
+            $('#idproducto').val(productou);
             $.ajax({
                 type: "POST",
-                data: "cedula=" + cedula,
-                url: "usuarios/obetnerdatosusuario.php",
+                data: "id=" + productou,
+                url: "productos/obtenerdatosproducto.php",
                 success: function(r) {
                     dato = jQuery.parseJSON(r);
-                    $('#nombre').val(dato['nombre']);
-                    $('#correo').val(dato['correo']);
-                    $('#rol').val(dato['rol']);
-                    $('#telefono').val(dato['telefono']);
-                    $('#usuario').val(dato['usuario']);
-
-                    alertify.confirm('Confirmación', 'Esta seguro que desea eliminar el usuario ' + dato['nombre'] + '?', function() {
-                        cadenau = "cedula=" + cedula;
+                    $('#producto').val(dato['producto']);
+                    $('#precio').val(dato['precio']);
+                    $('#disponibilidad').val(dato['disponibilidad']);
+                    alertify.confirm('Confirmación', 'Esta seguro que desea eliminar el usuario ' + dato['producto'] + '?', function() {
+                        cadenau = "id=" + productou;
                         $.ajax({
                             type: "POST",
-                            url: "usuarios/eliminarusuario.php",
+                            url: "productos/eliminarproducto.php",
                             data: cadenau,
                             success: function(r) {
                                 if (r == 1) {
                                     setTimeout(function() {
-                                        window.location.reload();
+                                        // window.location.reload();
                                     }, 1000);
+                                    alertify.warning('Producto eliminado');
                                 } else {
-                                    // console.log(r);
-                                    // debugger;
+                                    console.log(r);
+                                    debugger;
                                 }
                             }
                         });
-                        alertify.success('Usuario eliminado');
-                        setTimeout(function() {
-                            window.location.reload();
-                        }, 1000);
+
                     }, function() {
                         alertify.error('Cancelado');
                     });
@@ -382,15 +377,15 @@
                         data: datosForm,
                         success: function(r) {
                             if (r == 1) {
-                                console.log(r);
-                                debugger;
+                                // console.log(r);
+                                // debugger;
                                 setTimeout(function() {
                                     window.location.reload();
                                 }, 1500);
                                 alertify.success('Operación exitosa. ');
                             } else {
-                                console.log(r);
-                                debugger;
+                                // console.log(r);
+                                // debugger;
                             }
                         }
                     });

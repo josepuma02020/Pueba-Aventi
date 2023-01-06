@@ -10,7 +10,9 @@ if ($_SESSION['usuario']) {
         if (isset($fila)) {
             $id = $fila['id'];
             $archivoactual = $fila['nombrearchivo'];
-            unlink('./imagenproductos/' . $archivoactual);
+            if ($archivoactual != '') {
+                unlink('./imagenproductos/' . $archivoactual);
+            }
         }
 
 
