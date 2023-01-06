@@ -54,7 +54,10 @@
                     <button id="iniciarsesion" style="border-color:black;padding:0.5rem;text-align:center" type="button" class="btn  nav-link" data-toggle="modal" data-target="#login">Iniciar Sesion</button>
                 <?php
                 } else {
-                    echo   $_SESSION['nombre'];
+                ?>
+                    <a href="./perfil.php?cc='<?php echo   $_SESSION['cedula']; ?>'"><?php echo   $_SESSION['nombre']; ?>
+                    </a>
+                <?php
                 }
                 ?>
                 <div class="modal fade" id="login" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">

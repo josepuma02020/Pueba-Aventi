@@ -12,7 +12,7 @@ if (isset($arreglo)) {
     $rol = $arreglo['rol'];
     //autenticacion
     if (password_verify($clave1, $clave2)) {
-        $_SESSION['idusuario'] = $arreglo['idusuario'];
+        $_SESSION['cedula'] = $arreglo['cedula'];
         $_SESSION['usuario'] = $usuario;
         $_SESSION['correo'] = $arreglo['correo'];
         $_SESSION['rol'] = $rol;

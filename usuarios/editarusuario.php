@@ -15,5 +15,5 @@ if ($clave != '') {
 }
 
 
-$consulta = "UPDATE `usuarios` SET `nombre`='$nombre',`correo`='$correo',`telefono`='$telefono',`rol`='$rol',`usuario`='$usuario' WHERE cedula = '$cedula' ";
+$query = mysqli_query($link, $consulta) or die($consulta); $consulta = "UPDATE `usuarios` SET `nombre`='$nombre',`correo`='$correo',`telefono`='$telefono',`rol`='$rol',`usuario`='$usuario' WHERE cedula = '$cedula' ";
 echo $query = mysqli_query($link, $consulta) or die($consulta);
