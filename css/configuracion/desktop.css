@@ -24,6 +24,45 @@ footer>button {
     margin: 1rem;
 }
 
+.mensajes {
+    display: grid;
+    position: absolute;
+
+}
+
+.sidenav {
+    height: 100%;
+    width: 25%;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 75%;
+    background-color: #eee;
+    overflow: hidden;
+
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 1.3rem;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+    padding-right: 10%;
+}
+
+.sidenav a:hover {
+    color: black;
+}
+
+.sidenav a:hover,
+.dropdown-btn:hover {
+    color: black;
+}
+
 .formulario {
     margin-top: 3%;
     text-align: center;

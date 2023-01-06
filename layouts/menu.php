@@ -31,22 +31,23 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ">
-
-
+                        <li class="nav-item">
+                            <a class="nav-link" href="./compras.php">Carrito de compras</a>
+                        </li>
                         <li class="nav-item">
                             <?php
                             if ($sesionactiva == 'si') {
                                 if ($_SESSION['rol'] != 3) {
                             ?>
                         <li class="nav-item">
-                            <a id="registrarusuario" class="nav-link" href="./productos.php">Productos</a>
+                            <a class="nav-link" href="./productos.php">Productos</a>
                         </li>
                     <?php
                                 }
                                 if ($_SESSION['rol'] == 1) {
                     ?>
                         <li class="nav-item">
-                            <a id="registrarusuario" class="nav-link" href="./usuarios.php">Usuarios</a>
+                            <a class="nav-link" href="./usuarios.php">Usuarios</a>
                         </li>
                     <?php
                                 }

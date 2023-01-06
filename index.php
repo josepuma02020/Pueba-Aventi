@@ -126,6 +126,7 @@
             idproducto = $('#idproducto').val();
             a = 0;
             cantidad = $('#cantidad').val();
+            precio = $('#precio').val();
             if (cantidad < 1) {
                 a = 1;
                 alertify.alert('ATENCION!!', 'La cantidad debe ser mayor a 0', function() {
@@ -133,7 +134,7 @@
                 });
             }
             if (a == 0) {
-                cadenau = "cantidad=" + cantidad + "&idproducto=" + idproducto;
+                cadenau = "cantidad=" + cantidad + "&idproducto=" + idproducto + "&precio=" + precio;
                 $.ajax({
                     type: "POST",
                     url: "productos/registrarcarrito.php",

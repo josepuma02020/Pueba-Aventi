@@ -3,6 +3,7 @@ session_start();
 include('../conexion.php');
 $cantidad = $_POST['cantidad'];
 $idproducto = $_POST['idproducto'];
+$precio = $_POST['precio'];
 $consultaexistecarrito = "select * from compra where cliente = $_SESSION[cedula]";
 $query = mysqli_query($link, $consultaexistecarrito) or die($consultaexistecarrito);
 $fila = mysqli_fetch_array($query);
@@ -16,6 +17,6 @@ if (isset($fila)) {
     $fila = mysqli_fetch_array($query);
     $idcompra = $fila['idcompra'];
 }
-echo $idcompra;
-$consultanuevoregistrodecompra = "INSERT INTO `registroscompra`(`idregistro`, `producto`, `compra`, `cantidad`) VALUES ('','$idproducto','$idcompra','$cantidad')";
-$query = mysqli_query($link, $consultanuevoregistrodecompra) or die($consultanuevoregistrodecompra);
+$valor = $cantidad * $precio;
+$consultanuevoregistrodecompra = "INSERT INTO `registroscompra`(`idregistro`, `producto`, `compra`, `cantidad`,`precio`) VALUES ('','$idproducto','$idcompra','$cantidad','$valor')";
+echo $query = mysqli_query($link, $consultanuevoregistrodecompra) or die($consultanuevoregistrodecompra);

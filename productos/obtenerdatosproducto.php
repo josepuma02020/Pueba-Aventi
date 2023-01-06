@@ -1,6 +1,4 @@
 <?php
-
-
 include('../conexion.php');
 $id = $_POST['id'];
 $consultadatos = "SELECT * FROM `productos` WHERE idproducto = '$id'";
