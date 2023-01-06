@@ -36,9 +36,15 @@
                         <li class="nav-item">
                             <?php
                             if ($sesionactiva == 'si') {
-
-                                if ($_SESSION['rol'] == 1) {
+                                if ($_SESSION['rol'] != 3) {
                             ?>
+                        <li class="nav-item">
+                            <a id="registrarusuario" class="nav-link" href="./productos.php">Productos</a>
+                        </li>
+                    <?php
+                                }
+                                if ($_SESSION['rol'] == 1) {
+                    ?>
                         <li class="nav-item">
                             <a id="registrarusuario" class="nav-link" href="./usuarios.php">Usuarios</a>
                         </li>
@@ -92,7 +98,7 @@
                                     </div>
 
                                 </div>
-                                <div class="modal-footer">
+                                <div class="modal-footer footer-login">
                                     <div>
                                         <a href="">
                                             <p>Recuperar contraseña</p>
