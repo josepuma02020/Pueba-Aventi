@@ -10,7 +10,9 @@
     <link type="text/css" href="./librerias/jquery-ui-1.12.1.custom/jquery-ui.min.css" rel=" Stylesheet" />
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.22/css/jquery.dataTables.css" />
     <link rel="stylesheet" href="./css/configuracion/desktop.css">
-    <SCRIPT src="librerias/alertify/alertify.js"></script>
+    <SCRIPT src="librerias/alertify/alertify.js">
+
+    </script>
     <title>Productos</title>
 </head>
 
@@ -65,7 +67,7 @@
                                     <div class="form-group mediano-grande">
 
                                         <label for="imagenn">Imagen:</label>
-                                        <input accept="image/gif,image/jpg,image/png" style="text-align:center" class=" form-control " id="imagenn" name="imagenn" type="file">
+                                        <input style="text-align:center" class=" form-control " id="imagenn" name="imagenn" type="file">
                                     </div>
 
                                 </div>
@@ -104,18 +106,36 @@
                             <td> <?php echo '$' . number_format($filas['precio']) ?> </td>
                             <td> <?php echo $filas['disponibilidad'] ?> </td>
                             <td>
-
                                 <img src="./productos/imagenproductos/<?php echo $filas['nombrearchivo']; ?>" class="img-fluid" alt="Foto de producto" style="width: 70x ;height:70px">
-
                             </td>
                             <td>
-                                <input disabled style="text-align:center" class=" form-control " id="productou" name="productou" type="hidden" value="<?php echo $filas['idproducto'] ?>">
-                                <button type="button" title="Editar tipo de documento" id="detallesproducto" class="btn btn-primary" data-toggle="modal" data-target="#editarproducto">
+                                <script>
+                                    function detallesproducto(id) {
+                                        productou = $('#productou').val();
+                                        $('#idproducto').val(id);
+                                        $.ajax({
+                                            type: "POST",
+                                            data: "id=" + id,
+                                            url: "productos/obtenerdatosproducto.php",
+                                            success: function(r) {
+                                                dato = jQuery.parseJSON(r);
+                                                $('#producto').val(dato['producto']);
+                                                $('#idproducto').val(id);
+                                                $('#precio').val(dato['precio']);
+                                                $('#pruebaid').val(id);
+                                                $('#disponibilidad').val(dato['disponibilidad']);
+                                                document.getElementById("fotoproducto").src = "./productos/imagenproductos/" + dato['nombrearchivo'];
+                                            }
+                                        });
+                                    }
+                                </script>
+
+                                <button onclick="detallesproducto(<?php echo $filas['idproducto'] ?>)" type="button" title="Editar tipo de documento" id="detallesproducto" class="btn btn-primary" data-toggle="modal" data-target="#editarproducto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
                                         <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z" />
                                     </svg>
                                 </button>
-                                <button type="button" title="Editar tipo de documento" id="eliminarusuario" class="btn btn-danger">
+                                <button onclick="detallesproducto(<?php echo $filas['idproducto'] ?>)" type="button" title="Eliminar producto" id="eliminarproducto" name="eliminarproducto" class="btn btn-danger">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
                                         <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z" />
                                     </svg>
@@ -141,7 +161,7 @@
                                 <div class="form-row formulario">
                                     <div class="form-group mediano-grande">
                                         <label for="producto">producto:</label>
-                                        <input style="text-align:center" class=" form-control " id="idproducto" name="idproducto" type="hidden">
+                                        <input style="text-align:center" class=" form-control " id="idproducto" name="idproducto" type="text">
                                         <input style="text-align:center" class=" form-control " id="producto" name="producto" type="text">
                                     </div>
                                     <div class="form-group mediano-grande">
@@ -158,7 +178,7 @@
                                     <div class="form-group mediano-grande">
 
                                         <label for="imagen">Imagen:</label>
-                                        <input accept="image/gif,image/jpg,image/png" style="text-align:center" class=" form-control " id="imagen" name="imagen" type="file">
+                                        <input style="text-align:center" class=" form-control " id="imagen" name="imagen" type="file">
                                     </div>
 
                                 </div>
@@ -171,7 +191,7 @@
                         <div class="modal-footer">
 
                             <div> <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-                                <button type="button" id="guardarproducto" class="btn btn-primary">Registrar</button>
+                                <button type="button" id="guardarproducto" class="btn btn-primary">Editar</button>
                             </div>
 
 
@@ -182,62 +202,22 @@
         </div>
     </main>
     <footer>
+        <input style="text-align:center" class=" form-control " id="pruebaid" name="pruebaid" type="text">
     </footer>
 </body>
 
 </HTML>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script type="text/javascript" src="./librerias/jquery-ui-1.12.1.custom/jquery-ui.js"></script>
-<script type="text/javascript" src="./librerias/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
 <script type="text/javascript">
     $(document).ready(function() {
 
-        $('#eliminarusuario').click(function() {
-            productou = $('#productou').val();
-            $('#idproducto').val(productou);
-            $.ajax({
-                type: "POST",
-                data: "id=" + productou,
-                url: "productos/obtenerdatosproducto.php",
-                success: function(r) {
-                    dato = jQuery.parseJSON(r);
-                    $('#producto').val(dato['producto']);
-                    $('#precio').val(dato['precio']);
-                    $('#disponibilidad').val(dato['disponibilidad']);
-                    alertify.confirm('Confirmación', 'Esta seguro que desea eliminar el usuario ' + dato['producto'] + '?', function() {
-                        cadenau = "id=" + productou;
-                        $.ajax({
-                            type: "POST",
-                            url: "productos/eliminarproducto.php",
-                            data: cadenau,
-                            success: function(r) {
-                                if (r == 1) {
-                                    setTimeout(function() {
-                                        // window.location.reload();
-                                    }, 1000);
-                                    alertify.warning('Producto eliminado');
-                                } else {
-                                    console.log(r);
-                                    debugger;
-                                }
-                            }
-                        });
-
-                    }, function() {
-                        alertify.error('Cancelado');
-                    });
-
-
-                }
-            });
-
-        });
         $('#guardarproducto').click(function() {
             a = 0;
+            idproducto = $('#idproducto').val();
             imagen = $('#imagen').val();
             disponibilidad = $('#disponibilidad').val();
             producto = $('#producto').val();
-            idproducto = $('#idproducto').val();
             precio = $('#precio').val();
             if (producto == '') {
                 a = 1;
@@ -270,7 +250,7 @@
                     soporte = $('#imagen').prop('files')[0];
                     datosForm = new FormData;
                     datosForm.append("soporte", soporte);
-                    ruta = 'productos/subirimagendeproducto.php';
+                    ruta = 'productos/subirimagendeproducto.php?id=' + idproducto;
                     $.ajax({
                         type: "POST",
                         url: ruta,
@@ -394,23 +374,36 @@
             }
 
         });
-        $('#detallesproducto').click(function() {
-            productou = $('#productou').val();
-            $('#idproducto').val(productou);
-            $.ajax({
-                type: "POST",
-                data: "id=" + productou,
-                url: "productos/obtenerdatosproducto.php",
-                success: function(r) {
-                    dato = jQuery.parseJSON(r);
-                    $('#producto').val(dato['producto']);
-                    $('#precio').val(dato['precio']);
-                    $('#disponibilidad').val(dato['disponibilidad']);
-                    document.getElementById("fotoproducto").src = "./productos/imagenproductos/" + dato['nombrearchivo'];
-                }
-            });
+        $('#eliminarproducto').click(function() {
+            productou = $('#pruebaid').val();
+            debugger;
+            console.log(productou);
+            alertify.confirm('Confirmación', 'Esta seguro que desea eliminar el usuario ' + productou + '?', function() {
+                cadenau = "id=" + productou;
+                $.ajax({
+                    type: "POST",
+                    url: "productos/eliminarproducto.php",
+                    data: cadenau,
+                    success: function(r) {
+                        if (r == 1) {
+                            console.log(r);
+                            debugger;
+                            setTimeout(function() {
+                                window.location.reload();
+                            }, 1000);
+                            alertify.warning('Producto eliminado');
+                        } else {
+                            console.log(r);
+                            debugger;
+                        }
+                    }
+                });
 
+            }, function() {
+                alertify.error('Cancelado');
+            });
 
         });
     });
 </script>
+<script type="text/javascript" src="./librerias/jquery-ui-1.12.1.custom/jquery-ui.min.js"></script>
