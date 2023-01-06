@@ -161,7 +161,7 @@
                                 <div class="form-row formulario">
                                     <div class="form-group mediano-grande">
                                         <label for="producto">producto:</label>
-                                        <input style="text-align:center" class=" form-control " id="idproducto" name="idproducto" type="text">
+                                        <input style="text-align:center" class=" form-control " id="idproducto" name="idproducto" type="hidden">
                                         <input style="text-align:center" class=" form-control " id="producto" name="producto" type="text">
                                     </div>
                                     <div class="form-group mediano-grande">

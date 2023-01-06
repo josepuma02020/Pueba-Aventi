@@ -1,0 +1,19 @@
+button {
+    margin: auto;
+}
+
+.producto {
+    margin: 2rem;
+    border: 1rem solid;
+    border-radius: 1rem;
+    border-color: rgb(4, 184, 184);
+
+}
+
+.opciones {
+    display: flex;
+}
+
+.form-producto {
+    display: flex;
+}
