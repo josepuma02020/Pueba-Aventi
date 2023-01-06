@@ -17,6 +17,10 @@
   <body>
       <header>
           <?php
+            session_start();
+            if ($_SESSION['rol'] != 1) {
+                header('Location: ' . "./index.php");
+            }
             include_once('./layouts/menu.php');
             include_once('./conexion.php');
             ?>
@@ -162,7 +166,7 @@
                   <div class="modal-dialog modal-lg">
                       <div class="modal-content">
                           <div class="modal-header">
-                              <h5 class="modal-title" id="exampleModalLabel">Registrar nuevo usuario</h5>
+                              <h5 class="modal-title" id="exampleModalLabel">Editar información de usuario</h5>
                               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                   <span aria-hidden="true">&times;</span>
                               </button>

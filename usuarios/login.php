@@ -21,4 +21,6 @@ if (isset($arreglo)) {
         $_SESSION['telefono'] = $arreglo['telefono'];
         header('Location: ' . "../index.php");
     }
+} else {
+    header('Location: ' . "./index.php");
 }

@@ -70,50 +70,17 @@
                         </div>
                     </div>
                     <div class="form-row formulario">
-                        <div class="form-group mediano-grande">
-                            <label for="cedulan">Rol:</label>
-                            <select style="text-align: center;" id="rol" name="rol" value="<?php echo $filas['rol']; ?>" class="form-control col-md-8 ">
-                                <?php
-                                switch ($filas['rol']) {
-                                    case 1:
-                                ?>
 
-                                        <option selected value="1">Gerente</option>
-                                        <option value="2">Supervisor</option>
-                                        <option value="3">Comprador</option>
-                                    <?php
-                                        break;
-                                    case 2:
-                                    ?>
-
-                                        <option value="1">Gerente</option>
-                                        <option selected value="2">Supervisor</option>
-                                        <option value="3">Comprador</option>
-                                    <?php
-                                        break;
-                                    case 3:
-                                    ?>
-
-                                        <option value="1">Gerente</option>
-                                        <option value="2">Supervisor</option>
-                                        <option selected value="3">Comprador</option>
-                                <?php
-                                        break;
-                                }
-                                ?>
-
-                            </select>
-                        </div>
                         <div class="form-group mediano-grande">
                             <label for="usuario">Usuario:</label>
                             <input value="<?php echo $filas['usuario']; ?>" style="text-align:center" class=" form-control " id="usuarioe" name="usuarioe" type="text">
                         </div>
-                    </div>
-                    <div class="form-row formulario">
                         <div class="form-group mediano-grande">
                             <label for="clave">Clave:</label>
                             <input style="text-align:center" class="form-control " id="clave" name="clave" type="password">
                         </div>
+                    </div>
+                    <div class="form-row formulario">
                         <div class="form-group mediano-grande">
                             <label for="confirmarclave">Confirmar Clave:</label>
                             <input style="text-align:center" class="form-control " id="confirmarclave" name="confirmarclave" type="password">

@@ -31,19 +31,26 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
                     <ul class="navbar-nav ">
-                        <li class="nav-item">
-                            <a id="registrarusuario" class="nav-link" href="./usuarios.php">Usuarios</a>
-                        </li>
+
+
                         <li class="nav-item">
                             <?php
                             if ($sesionactiva == 'si') {
-                            ?>
-                                <a class="nav-link" href="usuarios/cerrarsesion.php">Salir</a>
-                            <?php
-                            }
-                            ?>
 
+                                if ($_SESSION['rol'] == 1) {
+                            ?>
+                        <li class="nav-item">
+                            <a id="registrarusuario" class="nav-link" href="./usuarios.php">Usuarios</a>
                         </li>
+                    <?php
+                                }
+                    ?>
+                    <a class="nav-link" href="usuarios/cerrarsesion.php">Salir</a>
+                <?php
+                            }
+                ?>
+
+                </li>
                     </ul>
                 </div>
             </div>
@@ -55,7 +62,7 @@
                 <?php
                 } else {
                 ?>
-                    <a href="./perfil.php?cc='<?php echo   $_SESSION['cedula']; ?>'"><?php echo   $_SESSION['nombre']; ?>
+                    <a href="./perfil.php?cc=<?php echo   $_SESSION['cedula']; ?>"><?php echo   $_SESSION['nombre']; ?>
                     </a>
                 <?php
                 }
